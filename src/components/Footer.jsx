@@ -15,7 +15,7 @@ export default function Footer({ onOpenContact }) {
         <div className="footer-top-grid">
           <div className="footer-brand-col">
             <div className="footer-logo">
-              <img src="/assets/logo.jpeg" alt="Gaussians Logo White" className="f-logo-img" />
+              <img src="./assets/logo.jpeg" alt="Gaussians Logo White" className="f-logo-img" />
             </div>
             <p className="footer-brand-desc">
               Helping organizations transform security, compliance, and risk management from business challenges into strategic advantages through practical execution and long-term partnership.

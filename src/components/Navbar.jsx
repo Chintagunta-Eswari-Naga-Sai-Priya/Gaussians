@@ -25,7 +25,7 @@ export default function Navbar({ onOpenContact }) {
     <header className={`navbar-header ${scrolled ? 'scrolled' : ''}`}>
       <div className="container nav-container">
         <a href="#" className="nav-logo">
-          <img src="/assets/coloured_logo.jpeg" alt="Gaussians Logo" className="logo-img" />
+          <img src="./assets/coloured_logo.jpeg" alt="Gaussians Logo" className="logo-img" />
         </a>
 
         <nav className={`nav-links ${mobileMenuOpen ? 'open' : ''}`}>
