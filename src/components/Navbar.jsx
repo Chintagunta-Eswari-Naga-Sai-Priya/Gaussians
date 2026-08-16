@@ -64,10 +64,8 @@ export default function Navbar({ onOpenContact }) {
           z-index: 1000;
           padding: 1.25rem 0;
           transition: all 0.3s ease;
-          background: rgba(255, 255, 255, 0.85);
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
-          border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+          background: #FFFFFF;
+          border-bottom: 1px solid rgba(226, 232, 240, 0.6);
         }
 
         .navbar-header.scrolled {
