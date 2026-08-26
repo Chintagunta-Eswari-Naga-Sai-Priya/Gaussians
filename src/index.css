@@ -43,7 +43,21 @@
   /* Transitions */
   --transition-fast: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-normal: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ─── Typography Scale ────────────────────────────────────────
+     Use these variables everywhere for consistent sizing.
+     Never hard-code font-size values in components.
+  ──────────────────────────────────────────────────────────── */
+  --fs-hero:      3.5rem;   /* Hero H1 only */
+  --fs-section:   2.3rem;   /* Section H2 titles (e.g. "Why Clients Choose Us") */
+  --fs-card:      1.2rem;   /* Card / item H3 titles */
+  --fs-body:      0.95rem;  /* Body text, descriptions, paragraphs */
+  --fs-small:     0.82rem;  /* Labels, badges, secondary meta */
+  --fs-nav:       0.95rem;  /* Navbar links */
 }
+
+/* ─── Global Typography Defaults ─────────────────────────── */
+
 
 * {
   margin: 0;
@@ -73,6 +87,10 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.2;
   letter-spacing: -0.02em;
 }
+h1 { font-size: var(--fs-hero); }
+h2 { font-size: var(--fs-section); }
+h3 { font-size: var(--fs-card); }
+p  { font-size: var(--fs-body); }
 
 /* Container */
 .container {
@@ -171,12 +189,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .section-header h2 {
-  font-size: 2.3rem;
+  font-size: var(--fs-section);
   margin: 0.75rem 0 1rem 0;
 }
 
 .section-header p {
-  font-size: 1.1rem;
+  font-size: var(--fs-body);
   color: var(--text-muted);
 }
 

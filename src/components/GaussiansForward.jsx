@@ -140,7 +140,7 @@ export default function GaussiansForward({ onOpenContact }) {
 
         .dark-header .dark-title {
           color: #FFFFFF;
-          font-size: 2.6rem;
+          font-size: var(--fs-section);
         }
 
         .dark-header .dark-desc {
@@ -193,7 +193,7 @@ export default function GaussiansForward({ onOpenContact }) {
         .p-num {
           font-family: var(--font-heading);
           font-weight: 800;
-          font-size: 1.1rem;
+          font-size: var(--fs-body);
           color: #C4B5FD;
           letter-spacing: 0.05em;
         }
@@ -211,7 +211,7 @@ export default function GaussiansForward({ onOpenContact }) {
         }
 
         .p-title {
-          font-size: 1.5rem;
+          font-size: var(--fs-card);
           color: #FFFFFF;
           margin-bottom: 0.2rem;
         }
@@ -219,7 +219,7 @@ export default function GaussiansForward({ onOpenContact }) {
         .p-sub {
           font-family: var(--font-heading);
           font-weight: 700;
-          font-size: 0.8rem;
+          font-size: var(--fs-small);
           color: #A78BFA;
           text-transform: uppercase;
           letter-spacing: 0.05em;
@@ -227,7 +227,7 @@ export default function GaussiansForward({ onOpenContact }) {
         }
 
         .p-desc {
-          font-size: 0.92rem;
+          font-size: var(--fs-body);
           color: rgba(226, 232, 240, 0.78);
           line-height: 1.6;
           margin-bottom: 1.5rem;
@@ -246,7 +246,7 @@ export default function GaussiansForward({ onOpenContact }) {
           display: flex;
           align-items: center;
           gap: 0.5rem;
-          font-size: 0.84rem;
+          font-size: var(--fs-small);
           font-weight: 600;
           color: #F1F5F9;
         }
@@ -272,13 +272,13 @@ export default function GaussiansForward({ onOpenContact }) {
 
         .f-cta-content h3 {
           color: #FFFFFF;
-          font-size: 1.85rem;
+          font-size: var(--fs-section);
           margin-bottom: 0.5rem;
         }
 
         .f-cta-content p {
           color: rgba(255, 255, 255, 0.9);
-          font-size: 1rem;
+          font-size: var(--fs-body);
           max-width: 650px;
         }
 

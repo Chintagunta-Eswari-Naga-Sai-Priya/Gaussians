@@ -102,10 +102,12 @@ export default function Footer({ onOpenContact }) {
           height: 38px;
           object-fit: contain;
           margin-bottom: 1.25rem;
+          display: block;
+          mix-blend-mode: screen;
         }
 
         .footer-brand-desc {
-          font-size: 0.92rem;
+          font-size: var(--fs-body);
           line-height: 1.6;
           color: rgba(255, 255, 255, 0.7);
           margin-bottom: 1.5rem;
@@ -120,16 +122,17 @@ export default function Footer({ onOpenContact }) {
           padding: 0.4rem 0.85rem;
           border-radius: var(--radius-full);
           font-family: var(--font-heading);
-          font-size: 0.82rem;
+          font-size: var(--fs-small);
           color: #D8D2FF;
           font-weight: 600;
         }
 
         .f-title {
-          font-size: 1.05rem;
+          font-size: var(--fs-card);
           color: #FFFFFF;
           margin-bottom: 1.5rem;
           letter-spacing: -0.01em;
+          font-weight: 700;
         }
 
         .footer-links-col ul {
@@ -144,7 +147,7 @@ export default function Footer({ onOpenContact }) {
           border: none;
           color: rgba(255, 255, 255, 0.7);
           font-family: var(--font-body);
-          font-size: 0.9rem;
+          font-size: var(--fs-body);
           cursor: pointer;
           transition: var(--transition-fast);
           padding: 0;
@@ -166,7 +169,7 @@ export default function Footer({ onOpenContact }) {
           display: flex;
           align-items: flex-start;
           gap: 0.65rem;
-          font-size: 0.88rem;
+          font-size: var(--fs-body);
           color: rgba(255, 255, 255, 0.75);
           line-height: 1.4;
         }
@@ -187,7 +190,7 @@ export default function Footer({ onOpenContact }) {
           justify-content: space-between;
           align-items: center;
           padding-top: 2rem;
-          font-size: 0.85rem;
+          font-size: var(--fs-small);
           color: rgba(255, 255, 255, 0.5);
         }
 
@@ -202,7 +205,7 @@ export default function Footer({ onOpenContact }) {
           background: none;
           border: none;
           color: rgba(255, 255, 255, 0.6);
-          font-size: 0.85rem;
+          font-size: var(--fs-small);
           text-decoration: none;
           cursor: pointer;
         }

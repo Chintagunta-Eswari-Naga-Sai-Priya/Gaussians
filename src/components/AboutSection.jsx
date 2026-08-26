@@ -85,7 +85,7 @@ export default function AboutSection() {
     {
       key: 'vision-mission',
       icon: <Target size={22} />,
-      label: 'Vision and Mission',
+      label: 'Mission and Vision',
       accent: 'linear-gradient(135deg, #5A38FD 0%, #4322EA 100%)',
       content: (
         <div className="panel-body-mv-split">
@@ -238,7 +238,7 @@ export default function AboutSection() {
         }
 
         .about-main-title {
-          font-size: clamp(2rem, 4vw, 2.9rem);
+          font-size: var(--fs-section);
           line-height: 1.2;
         }
 
@@ -249,7 +249,7 @@ export default function AboutSection() {
         }
 
         .about-subtitle {
-          font-size: 1.08rem;
+          font-size: var(--fs-body);
           color: var(--text-muted);
           line-height: 1.7;
           max-width: 620px;
@@ -316,7 +316,7 @@ export default function AboutSection() {
         }
 
         .accordion-label {
-          font-size: 1.08rem;
+          font-size: var(--fs-card);
           font-weight: 700;
           color: var(--text-dark);
           font-family: var(--font-heading);
@@ -350,7 +350,7 @@ export default function AboutSection() {
 
         /* Common content styles */
         .story-text {
-          font-size: 1rem;
+          font-size: var(--fs-body);
           color: var(--text-body);
           line-height: 1.7;
           margin-bottom: 1.1rem;
@@ -376,7 +376,7 @@ export default function AboutSection() {
         }
 
         .values-heading {
-          font-size: 1rem;
+          font-size: var(--fs-body);
           margin-bottom: 1rem;
           color: var(--primary);
           font-weight: 700;
@@ -392,7 +392,7 @@ export default function AboutSection() {
           display: flex;
           align-items: flex-start;
           gap: 0.6rem;
-          font-size: 0.93rem;
+          font-size: var(--fs-body);
           color: var(--text-body);
         }
 
@@ -421,14 +421,14 @@ export default function AboutSection() {
         }
 
         .mv-card-inline h3 {
-          font-size: 1.4rem;
+          font-size: var(--fs-card);
           color: var(--text-dark);
           margin-bottom: 0.75rem;
           margin-top: 1rem;
         }
 
         .mv-card-inline p {
-          font-size: 0.98rem;
+          font-size: var(--fs-body);
           line-height: 1.65;
           color: var(--text-body);
         }

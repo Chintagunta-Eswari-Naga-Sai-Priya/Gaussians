@@ -85,7 +85,7 @@ export default function SuccessStories({ onOpenContact }) {
         }
 
         .testimonial-quote {
-          font-size: 1.1rem;
+          font-size: var(--fs-body);
           color: var(--text-dark);
           line-height: 1.6;
           font-style: italic;
@@ -102,12 +102,12 @@ export default function SuccessStories({ onOpenContact }) {
 
         .author-name {
           font-weight: 700;
-          font-size: 1rem;
+          font-size: var(--fs-body);
           color: var(--text-dark);
         }
 
         .author-company {
-          font-size: 0.85rem;
+          font-size: var(--fs-small);
           color: var(--primary);
           font-weight: 600;
         }
@@ -130,7 +130,7 @@ export default function SuccessStories({ onOpenContact }) {
         .case-study-tag {
           font-family: var(--font-heading);
           font-weight: 800;
-          font-size: 0.78rem;
+          font-size: var(--fs-small);
           color: var(--primary);
           letter-spacing: 0.05em;
           display: block;
@@ -138,12 +138,12 @@ export default function SuccessStories({ onOpenContact }) {
         }
 
         .case-study-header h3 {
-          font-size: 1.8rem;
+          font-size: var(--fs-section);
           color: var(--text-dark);
         }
 
         .case-study-intro {
-          font-size: 1.1rem;
+          font-size: var(--fs-body);
           color: var(--text-body);
           line-height: 1.65;
           margin-bottom: 2rem;
@@ -157,7 +157,7 @@ export default function SuccessStories({ onOpenContact }) {
         }
 
         .case-column h4 {
-          font-size: 1.15rem;
+          font-size: var(--fs-card);
           color: var(--text-dark);
           margin-bottom: 1.25rem;
           font-weight: 700;
@@ -174,7 +174,7 @@ export default function SuccessStories({ onOpenContact }) {
           display: flex;
           align-items: flex-start;
           gap: 0.75rem;
-          font-size: 0.95rem;
+          font-size: var(--fs-body);
           color: var(--text-body);
           line-height: 1.5;
         }
@@ -197,7 +197,7 @@ export default function SuccessStories({ onOpenContact }) {
         .section-note {
           margin-top: 2rem;
           text-align: center;
-          font-size: 0.85rem;
+          font-size: var(--fs-small);
           color: var(--text-muted);
           font-style: italic;
         }

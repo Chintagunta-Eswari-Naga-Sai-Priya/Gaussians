@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Award, Layers, ShieldCheck, TrendingUp, UserCheck, HeartHandshake, Quote, CheckCircle2, ArrowRight, Sparkles, Shield, Star, Lock, Zap } from 'lucide-react';
+import { Award, Layers, ShieldCheck, TrendingUp, UserCheck, HeartHandshake, Quote, CheckCircle2, ChevronDown, Sparkles, Zap } from 'lucide-react';
 
 export default function DifferenceSection() {
-  const [activeTab, setActiveTab] = useState(0);
+  const [openIndex, setOpenIndex] = useState(null);
+
+  const toggle = (idx) => setOpenIndex(openIndex === idx ? null : idx);
 
   const pillars = [
     {
@@ -13,7 +15,7 @@ export default function DifferenceSection() {
       metric: '15+ Yrs Leadership Exp.',
       desc: 'Our team brings seasoned professionals with Big-4 and global consulting backgrounds, alongside real-world enterprise experience to solve your toughest trust & compliance challenges.',
       highlight: 'Senior leaders actively involved in every client engagement.',
-      icon: <Award size={28} />
+      icon: <Award size={22} />
     },
     {
       id: 'flexibility',
@@ -23,7 +25,7 @@ export default function DifferenceSection() {
       metric: '4 Delivery Models',
       desc: 'Whether you need strategic advisory, fully managed compliance operations, specialized staff augmentation, or dedicated offshore centers, we flex to fit your exact scale.',
       highlight: 'Advisory, Managed Services, Staff Augmentation & Dedicated Teams.',
-      icon: <Layers size={28} />
+      icon: <Layers size={22} />
     },
     {
       id: 'execution',
@@ -31,9 +33,9 @@ export default function DifferenceSection() {
       title: 'Hands-On Execution & Ownership',
       badge: 'We Deliver',
       metric: 'Operational Ownership',
-      desc: 'We don\'t stop at high-level reports. We design policies, test ITGCs, collect audit evidence, interface directly with auditors, and manage day-to-day security operations.',
+      desc: "We don't stop at high-level reports. We design policies, test ITGCs, collect audit evidence, interface directly with auditors, and manage day-to-day security operations.",
       highlight: 'Operational support that embeds directly into your workflow.',
-      icon: <ShieldCheck size={28} />
+      icon: <ShieldCheck size={22} />
     },
     {
       id: 'scalability',
@@ -43,7 +45,7 @@ export default function DifferenceSection() {
       metric: 'Zero Audit Surprises',
       desc: 'Expand your security and compliance bandwidth quickly without sacrificing quality, oversight, or accountability across high-growth startups to global enterprises.',
       highlight: 'Consistent audit-ready quality at optimal operating cost.',
-      icon: <TrendingUp size={28} />
+      icon: <TrendingUp size={22} />
     },
     {
       id: 'dedicated',
@@ -53,7 +55,7 @@ export default function DifferenceSection() {
       metric: 'Direct Executive Access',
       desc: 'You deal directly with experts who understand your business context, not junior staff learning on your time. Personal ownership drives fast turnaround and high precision.',
       highlight: 'Direct executive sponsorship on all key milestones.',
-      icon: <UserCheck size={28} />
+      icon: <UserCheck size={22} />
     },
     {
       id: 'trust',
@@ -63,7 +65,7 @@ export default function DifferenceSection() {
       metric: 'Honest Advisory',
       desc: 'We build relationships based on transparency, clear communication, and a relentless focus on customer success, guiding you from readiness through continuous governance.',
       highlight: 'Earned trust through honest conversations and tangible results.',
-      icon: <HeartHandshake size={28} />
+      icon: <HeartHandshake size={22} />
     }
   ];
 
@@ -88,59 +90,55 @@ export default function DifferenceSection() {
           </p>
         </div>
 
-        {/* Dynamic Showcase Stage: Tab Navigator + Featured Banner */}
-        <div className="showcase-container fade-in-up">
-          {/* Vertical Tabs (Left Side) */}
-          <div className="showcase-tabs">
-            {pillars.map((p, idx) => {
-              const isActive = activeTab === idx;
-              return (
-                <div
-                  key={p.id}
-                  className={`tab-item ${isActive ? 'active' : ''}`}
-                  onClick={() => setActiveTab(idx)}
+        {/* Accordion */}
+        <div className="accordion-list fade-in-up">
+          {pillars.map((p, idx) => {
+            const isOpen = openIndex === idx;
+            return (
+              <div
+                key={p.id}
+                className={`accordion-item ${isOpen ? 'open' : ''}`}
+              >
+                <button
+                  className="accordion-trigger"
+                  onClick={() => toggle(idx)}
+                  aria-expanded={isOpen}
                 >
-                  <div className="tab-icon-box">
-                    {p.icon}
+                  <div className="acc-left">
+                    <div className={`acc-icon-box ${isOpen ? 'active' : ''}`}>
+                      {p.icon}
+                    </div>
+                    <div className="acc-title-group">
+                      <span className="acc-badge">{p.badge}</span>
+                      <h4 className="acc-title">{p.title}</h4>
+                    </div>
                   </div>
-                  <div className="tab-info">
-                    <span className="tab-badge">{p.badge}</span>
-                    <h4 className="tab-title">{p.title}</h4>
+                  <div className="acc-right">
+                    {isOpen && (
+                      <span className="acc-metric">
+                        <Zap size={13} /> {p.metric}
+                      </span>
+                    )}
+                    <div className={`acc-chevron ${isOpen ? 'rotated' : ''}`}>
+                      <ChevronDown size={20} />
+                    </div>
+                  </div>
+                </button>
+
+                <div className="accordion-body">
+                  <div className="acc-body-inner">
+                    <p className="acc-desc">{p.desc}</p>
+                    <div className="acc-takeaway">
+                      <CheckCircle2 size={17} className="acc-check-icon" />
+                      <div>
+                        <strong>Core Advantage: </strong>{p.highlight}
+                      </div>
+                    </div>
                   </div>
                 </div>
-              );
-            })}
-          </div>
-
-          {/* Featured Active Display (Right Side) */}
-          <div className="showcase-display glass-card">
-            <div className="display-top">
-              <span className="display-metric-pill">
-                <Zap size={14} /> {pillars[activeTab].metric}
-              </span>
-              <span className="display-step-tag">Pillar {pillars[activeTab].num} of 06</span>
-            </div>
-
-            <div className="display-icon-header">
-              <div className="display-icon-circle">
-                {pillars[activeTab].icon}
               </div>
-              <div>
-                <span className="display-badge">{pillars[activeTab].badge}</span>
-                <h3 className="display-title">{pillars[activeTab].title}</h3>
-              </div>
-            </div>
-
-            <p className="display-desc">{pillars[activeTab].desc}</p>
-
-            <div className="display-takeaway-box">
-              <CheckCircle2 size={20} className="takeaway-icon" />
-              <div>
-                <strong>Core Advantage:</strong> {pillars[activeTab].highlight}
-              </div>
-            </div>
-
-          </div>
+            );
+          })}
         </div>
 
         {/* Philosophy Statement */}
@@ -201,56 +199,69 @@ export default function DifferenceSection() {
         }
 
         .diff-title {
-          font-size: 2.6rem;
+          font-size: var(--fs-section);
           margin-top: 0.5rem;
         }
 
         .diff-subtitle {
           font-family: var(--font-heading);
           font-weight: 700;
-          font-size: 1.1rem;
+          font-size: var(--fs-body);
           color: var(--primary);
           margin-top: 0.4rem;
         }
 
-        /* Showcase Container */
-        .showcase-container {
-          display: grid;
-          grid-template-columns: 1fr 1.15fr;
-          gap: 2rem;
-          margin-bottom: 3.5rem;
-          align-items: center;
-        }
-
-        /* Tabs List */
-        .showcase-tabs {
+        /* Accordion */
+        .accordion-list {
           display: flex;
           flex-direction: column;
-          gap: 0.85rem;
+          gap: 0.75rem;
+          margin-bottom: 3.5rem;
+          max-width: 860px;
+          margin-left: auto;
+          margin-right: auto;
         }
 
-        .tab-item {
-          display: flex;
-          align-items: center;
-          gap: 1.25rem;
-          padding: 1.1rem 1.4rem;
-          background: rgba(255, 255, 255, 0.9);
+        .accordion-item {
+          background: #FFFFFF;
           border: 1.5px solid var(--border-purple);
           border-radius: var(--radius-lg);
-          cursor: pointer;
-          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+          overflow: hidden;
+          transition: box-shadow 0.3s ease, border-color 0.3s ease;
         }
 
-        .tab-item:hover, .tab-item.active {
-          background: #FFFFFF;
+        .accordion-item.open {
           border-color: var(--primary);
-          box-shadow: 0 12px 30px -6px rgba(90, 56, 253, 0.18);
-          transform: translateX(8px);
+          box-shadow: 0 12px 35px -8px rgba(90, 56, 253, 0.18);
         }
 
-        .tab-icon-box {
-          width: 48px;
-          height: 48px;
+        .accordion-trigger {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 1rem;
+          padding: 1.15rem 1.5rem;
+          background: transparent;
+          border: none;
+          cursor: pointer;
+          text-align: left;
+          transition: background 0.2s ease;
+        }
+
+        .accordion-trigger:hover {
+          background: rgba(90, 56, 253, 0.03);
+        }
+
+        .acc-left {
+          display: flex;
+          align-items: center;
+          gap: 1.1rem;
+        }
+
+        .acc-icon-box {
+          width: 44px;
+          height: 44px;
           border-radius: var(--radius-md);
           background: var(--bg-soft-purple);
           color: var(--primary);
@@ -261,178 +272,111 @@ export default function DifferenceSection() {
           transition: all 0.3s ease;
         }
 
-        .tab-item.active .tab-icon-box {
+        .acc-icon-box.active {
           background: linear-gradient(135deg, var(--primary) 0%, #4322EA 100%);
           color: #FFFFFF;
           box-shadow: 0 6px 18px rgba(90, 56, 253, 0.3);
         }
 
-        .tab-badge {
-          font-family: var(--font-heading);
-          font-weight: 700;
-          font-size: 0.75rem;
-          color: var(--primary);
-          text-transform: uppercase;
-          letter-spacing: 0.04em;
-        }
-
-        .tab-title {
-          font-size: 1.05rem;
-          color: var(--text-dark);
-          line-height: 1.25;
-          margin-top: 0.1rem;
-        }
-
-        /* Showcase Display Right */
-        .showcase-display {
-          padding: 3rem 2.5rem;
-          background: #FFFFFF;
-          border: 2px solid var(--primary-border);
-          border-radius: var(--radius-lg);
-          box-shadow: 0 20px 45px -10px rgba(90, 56, 253, 0.15);
+        .acc-title-group {
           display: flex;
           flex-direction: column;
+          gap: 0.1rem;
         }
 
-        .display-top {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          margin-bottom: 1.75rem;
-        }
-
-        .display-metric-pill {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.4rem;
+        .acc-badge {
           font-family: var(--font-heading);
           font-weight: 700;
-          font-size: 0.82rem;
-          background: var(--primary-light);
+          font-size: var(--fs-small);
           color: var(--primary);
-          padding: 0.4rem 1rem;
-          border-radius: var(--radius-full);
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
         }
 
-        .display-step-tag {
-          font-size: 0.85rem;
-          color: var(--text-muted);
-          font-weight: 600;
+        .acc-title {
+          font-size: var(--fs-card);
+          color: var(--text-dark);
+          line-height: 1.3;
+          margin: 0;
         }
 
-        .display-icon-header {
+        .acc-right {
           display: flex;
           align-items: center;
-          gap: 1.25rem;
-          margin-bottom: 1.25rem;
-        }
-
-        .display-icon-circle {
-          width: 60px;
-          height: 60px;
-          border-radius: var(--radius-md);
-          background: linear-gradient(135deg, var(--primary) 0%, #4322EA 100%);
-          color: #FFFFFF;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          box-shadow: 0 8px 22px rgba(90, 56, 253, 0.3);
+          gap: 0.75rem;
           flex-shrink: 0;
         }
 
-        .display-badge {
+        .acc-metric {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.35rem;
           font-family: var(--font-heading);
           font-weight: 700;
-          font-size: 0.8rem;
+          font-size: var(--fs-small);
+          background: var(--primary-light);
           color: var(--primary);
-          text-transform: uppercase;
-          letter-spacing: 0.04em;
+          padding: 0.3rem 0.85rem;
+          border-radius: var(--radius-full);
+          white-space: nowrap;
         }
 
-        .display-title {
-          font-size: 1.65rem;
-          color: var(--text-dark);
-          line-height: 1.25;
-          margin-top: 0.15rem;
+        .acc-chevron {
+          color: var(--primary);
+          transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .display-desc {
-          font-size: 1.05rem;
+        .acc-chevron.rotated {
+          transform: rotate(180deg);
+        }
+
+        /* Accordion Body - animated open/close */
+        .accordion-body {
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .accordion-item.open .accordion-body {
+          max-height: 500px;
+        }
+
+        .acc-body-inner {
+          overflow: hidden;
+          min-height: 0;
+          padding: 0 1.5rem;
+          transition: padding 0.35s ease;
+        }
+
+        .accordion-item.open .acc-body-inner {
+          padding: 0 1.5rem 1.5rem 1.5rem;
+        }
+
+        .acc-desc {
+          font-size: var(--fs-body);
           color: var(--text-body);
           line-height: 1.65;
-          margin-bottom: 1.75rem;
+          margin-bottom: 1rem;
+          padding-left: calc(44px + 1.1rem);
         }
 
-        .display-takeaway-box {
+        .acc-takeaway {
           display: flex;
-          align-items: center;
-          gap: 0.85rem;
+          align-items: flex-start;
+          gap: 0.75rem;
           background: var(--bg-soft-purple);
           border: 1px solid var(--primary-border);
           border-radius: var(--radius-md);
-          padding: 1rem 1.25rem;
-          margin-bottom: 2rem;
-          font-size: 0.95rem;
+          padding: 0.9rem 1.1rem;
+          font-size: var(--fs-body);
           color: var(--text-dark);
+          margin-left: calc(44px + 1.1rem);
         }
 
-        .takeaway-icon {
+        .acc-check-icon {
           color: var(--primary);
           flex-shrink: 0;
-        }
-
-        .display-footer-nav {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding-top: 1.25rem;
-          border-top: 1px solid var(--border-light);
-        }
-
-        .nav-btn-prev {
-          background: transparent;
-          border: 1.5px solid var(--primary-border);
-          padding: 0.55rem 1.3rem;
-          border-radius: var(--radius-full);
-          font-family: var(--font-heading);
-          font-weight: 600;
-          color: var(--primary);
-          cursor: pointer;
-          transition: var(--transition-fast);
-        }
-
-        .nav-btn-prev:disabled {
-          opacity: 0.4;
-          cursor: not-allowed;
-        }
-
-        .nav-btn-prev:not(:disabled):hover {
-          background: var(--primary-light);
-        }
-
-        .nav-dots {
-          display: flex;
-          gap: 0.4rem;
-        }
-
-        .nav-dots .dot {
-          width: 8px;
-          height: 8px;
-          border-radius: 50%;
-          background: var(--primary-border);
-          cursor: pointer;
-          transition: all 0.3s ease;
-        }
-
-        .nav-dots .dot.active {
-          width: 24px;
-          border-radius: 4px;
-          background: var(--primary);
-        }
-
-        .nav-btn-next {
-          padding: 0.65rem 1.5rem;
-          font-size: 0.9rem;
+          margin-top: 2px;
         }
 
         /* Philosophy Card */
@@ -443,6 +387,7 @@ export default function DifferenceSection() {
           color: #FFFFFF;
           text-align: center;
           box-shadow: 0 18px 45px rgba(90, 56, 253, 0.28);
+          margin-top: 3.5rem;
         }
 
         .quote-icon {
@@ -451,7 +396,7 @@ export default function DifferenceSection() {
         }
 
         .philosophy-quote {
-          font-size: 1.3rem;
+          font-size: var(--fs-body);
           font-weight: 500;
           line-height: 1.6;
           max-width: 840px;
@@ -464,7 +409,7 @@ export default function DifferenceSection() {
           gap: 1rem;
           font-family: var(--font-heading);
           font-weight: 700;
-          font-size: 0.9rem;
+          font-size: var(--fs-small);
           color: rgba(255, 255, 255, 0.9);
           letter-spacing: 0.05em;
           text-transform: uppercase;
@@ -476,46 +421,21 @@ export default function DifferenceSection() {
           background: rgba(255, 255, 255, 0.4);
         }
 
-        @media (max-width: 1024px) {
-          .showcase-container {
-            grid-template-columns: 1fr;
-          }
-        }
-
         @media (max-width: 768px) {
           .difference-section {
             padding: 4.5rem 0;
           }
           .diff-title {
-            font-size: 2.1rem;
+            font-size: calc(var(--fs-section) * 0.9);
           }
-          .tab-item {
-            padding: 0.9rem 1.1rem;
+          .accordion-trigger {
+            padding: 1rem 1.1rem;
           }
-          .tab-title {
-            font-size: 0.95rem;
+          .acc-metric {
+            display: none;
           }
-          .showcase-display {
-            padding: 1.75rem 1.25rem;
-          }
-          .display-title {
-            font-size: 1.35rem;
-          }
-          .display-desc {
-            font-size: 0.95rem;
-          }
-          .display-footer-nav {
-            flex-direction: column;
-            gap: 1rem;
-            align-items: center;
-          }
-          .nav-dots {
-            order: -1;
-          }
-          .nav-btn-prev, .nav-btn-next {
-            width: 100%;
-            text-align: center;
-            justify-content: center;
+          .acc-desc, .acc-takeaway {
+            margin-left: 0;
           }
           .philosophy-banner {
             padding: 2.25rem 1.5rem;

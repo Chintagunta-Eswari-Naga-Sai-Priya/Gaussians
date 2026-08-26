@@ -157,7 +157,7 @@ export default function Hero({ onOpenContact, onExploreServices }) {
         }
 
         .hero-title {
-          font-size: 3.5rem;
+          font-size: var(--fs-hero);
           line-height: 1.15;
           margin-bottom: 1.25rem;
           letter-spacing: -0.03em;
@@ -172,7 +172,7 @@ export default function Hero({ onOpenContact, onExploreServices }) {
         }
 
         .hero-description {
-          font-size: 1.15rem;
+          font-size: var(--fs-body);
           color: var(--text-muted);
           margin-bottom: 1.5rem;
           max-width: 820px;
@@ -190,7 +190,7 @@ export default function Hero({ onOpenContact, onExploreServices }) {
           border-radius: var(--radius-md);
           padding: 1rem 1.5rem;
           margin-bottom: 2rem;
-          font-size: 0.95rem;
+          font-size: var(--fs-body);
           color: var(--text-dark);
           text-align: left;
           max-width: 760px;
@@ -212,7 +212,7 @@ export default function Hero({ onOpenContact, onExploreServices }) {
           border-radius: var(--radius-full);
           padding: 0.85rem 2.5rem;
           margin-top: 1.5rem;
-          font-size: 0.92rem;
+          font-size: var(--fs-body);
           width: 100%;
           max-width: 1200px;
           box-shadow: var(--shadow-sm);
@@ -251,11 +251,11 @@ export default function Hero({ onOpenContact, onExploreServices }) {
             padding: 7rem 0 3.5rem 0;
           }
           .hero-title {
-            font-size: 2.2rem;
+            font-size: calc(var(--fs-hero) * 0.6);
             line-height: 1.2;
           }
           .hero-description {
-            font-size: 1rem;
+            font-size: var(--fs-body);
           }
           .hero-callout {
             flex-direction: column;
@@ -275,7 +275,7 @@ export default function Hero({ onOpenContact, onExploreServices }) {
             flex-wrap: wrap;
             justify-content: center;
             gap: 0.4rem;
-            font-size: 0.82rem;
+            font-size: var(--fs-small);
           }
           .hero-actions {
             flex-direction: column;

@@ -186,7 +186,7 @@ export default function GlobalPresence({ onOpenContact }) {
         .gp-badge .badge-icon { color: #A78BFA; }
 
         .gp-headline {
-          font-size: 2.75rem;
+          font-size: var(--fs-section);
           color: #FFFFFF;
           line-height: 1.15;
           margin-bottom: 1rem;
@@ -200,7 +200,7 @@ export default function GlobalPresence({ onOpenContact }) {
         }
 
         .gp-subtext {
-          font-size: 1.02rem;
+          font-size: var(--fs-body);
           color: rgba(255,255,255,0.6);
           line-height: 1.65;
           margin-bottom: 2.5rem;
@@ -239,7 +239,7 @@ export default function GlobalPresence({ onOpenContact }) {
         }
 
         .gp-stat-lbl {
-          font-size: 0.8rem;
+          font-size: var(--fs-small);
           color: rgba(255,255,255,0.5);
           font-weight: 500;
         }
@@ -279,7 +279,7 @@ export default function GlobalPresence({ onOpenContact }) {
           display: flex;
           align-items: center;
           gap: 0.5rem;
-          font-size: 0.8rem;
+          font-size: var(--fs-small);
           color: rgba(255,255,255,0.5);
           font-weight: 500;
         }

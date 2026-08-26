@@ -32,17 +32,16 @@ export default function Navbar({ onOpenContact }) {
           <button className="nav-item" onClick={() => scrollTo('about')}>About Gaussians</button>
           <button className="nav-item" onClick={() => scrollTo('services')}>Services</button>
           <button className="nav-item" onClick={() => scrollTo('forward')}>Gaussians Forward</button>
-          <button className="nav-item" onClick={() => { setMobileMenuOpen(false); onOpenContact('Connect with Us Navigation'); }}>Connect with Us</button>
           <div className="mobile-cta">
-            <button className="btn-primary" onClick={onOpenContact}>
-              Talk to an Expert <ArrowRight size={16} />
+            <button className="btn-primary" onClick={() => { setMobileMenuOpen(false); onOpenContact('Connect with Us Navigation'); }}>
+              Connect with Us <ArrowRight size={16} />
             </button>
           </div>
         </nav>
 
         <div className="nav-cta-desktop">
-          <button className="btn-primary" onClick={onOpenContact}>
-            Get Started <ArrowRight size={16} />
+          <button className="btn-primary" onClick={() => onOpenContact('Connect with Us Navigation')}>
+            Connect with Us <ArrowRight size={16} />
           </button>
         </div>
 
@@ -87,7 +86,7 @@ export default function Navbar({ onOpenContact }) {
         }
 
         .logo-img {
-          height: 38px;
+          height: 56px;
           object-fit: contain;
         }
 
@@ -103,7 +102,7 @@ export default function Navbar({ onOpenContact }) {
           color: var(--text-body);
           font-family: var(--font-heading);
           font-weight: 600;
-          font-size: 0.95rem;
+          font-size: var(--fs-nav);
           cursor: pointer;
           transition: var(--transition-fast);
           padding: 0.25rem 0;

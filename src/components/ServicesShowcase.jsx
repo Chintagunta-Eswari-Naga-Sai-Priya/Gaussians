@@ -1,385 +1,79 @@
 import React, { useState } from 'react';
-import { ShieldCheck, ArrowRight } from 'lucide-react';
+import { ShieldCheck, ArrowRight, ExternalLink } from 'lucide-react';
 
-export default function ServicesShowcase({ onOpenContact }) {
-  const [selectedCategory, setSelectedCategory] = useState('all');
+export default function ServicesShowcase({ onOpenContact, onOpenFrameworks }) {
+  const [activeCategory, setActiveCategory] = useState('all');
 
   const categories = [
-    { id: 'all', name: 'All Services & Frameworks' },
+    { id: 'all', name: 'All Services' },
     { id: 'cybersecurity', name: 'Cybersecurity & Compliance' },
     { id: 'risk', name: 'Risk & Governance' },
     { id: 'audit', name: 'Audit & Assurance' },
     { id: 'managed', name: 'Managed Services' },
-    { id: 'program', name: 'Program Implementation & Transformation' }
+    { id: 'program', name: 'Program & Transformation' }
   ];
 
-  const offerings = [
-    // Cybersecurity & Compliance
+  // Only the KEY services shown on this page — short, scannable
+  const featuredOfferings = [
     {
       id: 'soc',
-      code: 'SOC',
-      name: 'SOC 1, SOC 2 & SOC 3',
+      code: 'SOC 1 / 2 / 3',
+      name: 'SOC Audits',
       category: 'cybersecurity',
-      desc: 'Preparation, controls mapping, evidence collection, and auditor liaison for Type I & Type II audits across Trust Services Criteria.',
-      badge: 'Cybersecurity & Compliance'
+      desc: 'End-to-end audit readiness, controls mapping, evidence collection, and auditor liaison for Type I & II.',
+      badge: 'Cybersecurity',
+      img: 'https://images.unsplash.com/photo-1507209575474-fa671a6b3f45?w=480&q=80&auto=format&fit=crop'
     },
     {
       id: 'iso27001',
       code: 'ISO 27001',
-      name: 'ISO 27001',
+      name: 'ISO 27001 Certification',
       category: 'cybersecurity',
-      desc: 'ISMS program design, Annex A controls implementation, internal audits, and certification readiness for Stage 1 & Stage 2 audits.',
-      badge: 'Cybersecurity & Compliance'
+      desc: 'ISMS design, Annex A controls implementation, and certification readiness for Stage 1 & Stage 2.',
+      badge: 'Cybersecurity',
+      img: 'https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=480&q=80&auto=format&fit=crop'
     },
     {
       id: 'iso42001',
       code: 'ISO 42001',
-      name: 'ISO 42001',
+      name: 'AI Management Systems',
       category: 'cybersecurity',
-      desc: 'The premier global standard for Artificial Intelligence Management Systems (AIMS), risk management, and AI transparency.',
-      badge: 'Cybersecurity & Compliance'
-    },
-    {
-      id: 'csa-star',
-      code: 'CSA STAR',
-      name: 'CSA STAR',
-      category: 'cybersecurity',
-      desc: 'Cloud Control Matrix (CCM) mapping, CAIQ self-assessment, and STAR Level 1 & Level 2 certification readiness.',
-      badge: 'Cybersecurity & Compliance'
-    },
-    {
-      id: 'pci-dss',
-      code: 'PCI DSS',
-      name: 'PCI DSS',
-      category: 'cybersecurity',
-      desc: 'CDE scope reduction, SAQ validation, ROC audit readiness, and continuous payment security monitoring.',
-      badge: 'Cybersecurity & Compliance'
-    },
-    {
-      id: 'hitrust',
-      code: 'HITRUST',
-      name: 'HITRUST',
-      category: 'cybersecurity',
-      desc: 'MyCSF portal management, validated assessment preparation, and CAP management for healthcare & tech vendors.',
-      badge: 'Cybersecurity & Compliance'
-    },
-    {
-      id: 'nist-csf',
-      code: 'NIST CSF',
-      name: 'NIST Cybersecurity Framework (CSF)',
-      category: 'cybersecurity',
-      desc: 'Comprehensive maturity assessments, gap remediation, and target profile alignment across the core CSF functions.',
-      badge: 'Cybersecurity & Compliance'
-    },
-    {
-      id: 'nist-ai',
-      code: 'NIST AI RMF',
-      name: 'NIST AI Risk Management Framework (AI RMF)',
-      category: 'cybersecurity',
-      desc: 'Govern, Map, Measure, and Manage functions for trustworthy, safe, and transparent AI system deployments.',
-      badge: 'Cybersecurity & Compliance'
-    },
-    {
-      id: 'cmmc',
-      code: 'CMMC',
-      name: 'CMMC',
-      category: 'cybersecurity',
-      desc: 'US DoD supply chain requirements, NIST SP 800-171 readiness, SSP authoring, and assessment prep.',
-      badge: 'Cybersecurity & Compliance'
-    },
-    {
-      id: 'cyber-essentials',
-      code: 'Cyber Essentials',
-      name: 'Cyber Essentials',
-      category: 'cybersecurity',
-      desc: 'United Kingdom cybersecurity certification readiness, boundary assessment, and basic security control audits.',
-      badge: 'Cybersecurity & Compliance'
-    },
-    {
-      id: 'hipaa',
-      code: 'HIPAA',
-      name: 'HIPAA',
-      category: 'cybersecurity',
-      desc: 'PHI protection, Administrative & Technical Safeguards, Business Associate Agreement (BAA) reviews.',
-      badge: 'Cybersecurity & Compliance'
-    },
-    {
-      id: 'gdpr',
-      code: 'GDPR',
-      name: 'GDPR & Privacy Programs',
-      category: 'cybersecurity',
-      desc: 'Data mapping, Privacy Impact Assessments (PIA/DPIA), DSAR workflows, and cross-border privacy compliance.',
-      badge: 'Cybersecurity & Compliance'
-    },
-    {
-      id: 'ccpa',
-      code: 'CCPA',
-      name: 'CCPA',
-      category: 'cybersecurity',
-      desc: 'California Consumer Privacy Act compliance, consumer rights workflows, and privacy policies.',
-      badge: 'Cybersecurity & Compliance'
-    },
-    {
-      id: 'cloud-sec',
-      code: 'Cloud',
-      name: 'Cloud Security Assessments',
-      category: 'cybersecurity',
-      desc: 'Security architecture design, cloud environment hardening, identity governance reviews, and vulnerability management tracking.',
-      badge: 'Cybersecurity & Compliance'
-    },
-    {
-      id: 'readiness-gap',
-      code: 'Gap Assess',
-      name: 'Compliance Readiness & Gap Assessments',
-      category: 'cybersecurity',
-      desc: 'Pre-audit gap remediation, controls mapping, evidence pre-validation, and organizational maturity reviews.',
-      badge: 'Cybersecurity & Compliance'
-    },
-    {
-      id: 'policy-frameworks',
-      code: 'Policies',
-      name: 'Policy & Control Frameworks (including AI policies)',
-      category: 'cybersecurity',
-      desc: 'Designing and drafting comprehensive policies, standards, procedures, and AI governance frameworks.',
-      badge: 'Cybersecurity & Compliance'
-    },
-    {
-      id: 'managed-compliance',
-      code: 'Compliance',
-      name: 'Compliance Managed Services',
-      category: 'cybersecurity',
-      desc: 'End-to-end management of compliance activities, continuous control monitoring, and reporting.',
-      badge: 'Cybersecurity & Compliance'
-    },
-
-    // Risk & Governance
-    {
-      id: 'it-risk',
-      code: 'IT Risk',
-      name: 'IT Risk Assessments',
-      category: 'risk',
-      desc: 'Systemic risk identification, qualitative and quantitative impact evaluation, and strategic mitigation roadmap development.',
-      badge: 'Risk & Governance'
+      desc: 'Premier standard for AI Governance, risk management, and AI transparency programs.',
+      badge: 'AI Leadership',
+      img: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=480&q=80&auto=format&fit=crop'
     },
     {
       id: 'tprm',
       code: 'TPRM',
       name: 'Third Party Risk Management',
       category: 'risk',
-      desc: 'Comprehensive vendor security due diligence assessments, questionnaire evaluations, and supply chain risk oversight programs.',
-      badge: 'Risk & Governance'
-    },
-    {
-      id: 'vendor-due',
-      code: 'Due Diligence',
-      name: 'Vendor Due Diligence',
-      category: 'risk',
-      desc: 'Evaluating third-party service providers, assessing technical safeguards, and identifying vendor business liabilities.',
-      badge: 'Risk & Governance'
-    },
-    {
-      id: 'tech-gov',
-      code: 'Governance',
-      name: 'Technology Governance: IT, Cloud, AI, Cyber, Data, Third Party',
-      category: 'risk',
-      desc: 'Establishing oversight structures and frameworks for IT, Cloud, Artificial Intelligence, Data, and Vendor lifecycle operations.',
-      badge: 'Risk & Governance'
-    },
-    {
-      id: 'tech-risk',
-      code: 'Risk Mgmt',
-      name: 'Technology Risk Management',
-      category: 'risk',
-      desc: 'Implementing continuous risk monitoring, vulnerability tracking, and technology governance operations.',
-      badge: 'Risk & Governance'
-    },
-    {
-      id: 'risk-design',
-      code: 'Framework',
-      name: 'Risk Framework Design',
-      category: 'risk',
-      desc: 'Designing, building, and operationalizing customized enterprise risk management frameworks and registries.',
-      badge: 'Risk & Governance'
-    },
-    {
-      id: 'control-val',
-      code: 'Validation',
-      name: 'Control Validation',
-      category: 'risk',
-      desc: 'Reviewing key internal controls to ensure they are designed and operating effectively to mitigate identified risks.',
-      badge: 'Risk & Governance'
-    },
-
-    // Audit & Assurance
-    {
-      id: 'sox',
-      code: 'SOX',
-      name: 'SOX',
-      category: 'audit',
-      desc: 'Internal control assessments, testing execution, and program validation for financial reporting and corporate transparency.',
-      badge: 'Audit & Assurance'
+      desc: 'Vendor security due diligence, questionnaire evaluations, and supply chain risk oversight.',
+      badge: 'Risk & Governance',
+      img: 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=480&q=80&auto=format&fit=crop'
     },
     {
       id: 'itgc',
-      code: 'ITGC',
-      name: 'ITGC Testing',
+      code: 'ITGC / ITAC',
+      name: 'ITGC & ITAC Testing',
       category: 'audit',
-      desc: 'Rigorous manual and automated validation of IT General Controls, database management, and change governance protocols.',
-      badge: 'Audit & Assurance'
+      desc: 'Rigorous validation of IT General Controls, database management, and application controls.',
+      badge: 'Audit & Assurance',
+      img: 'https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=480&q=80&auto=format&fit=crop'
     },
     {
-      id: 'itac',
-      code: 'ITAC',
-      name: 'ITAC Testing',
-      category: 'audit',
-      desc: 'Testing of IT Application Controls, automated system configurations, data integrations, and transaction mapping.',
-      badge: 'Audit & Assurance'
-    },
-    {
-      id: 'internal-audit',
-      code: 'Audit',
-      name: 'Internal Audit',
-      category: 'audit',
-      desc: 'Independent operational audits, internal control reviews, process documentation, and corporate compliance testing.',
-      badge: 'Audit & Assurance'
-    },
-    {
-      id: 'tech-assurance',
-      code: 'Assurance',
-      name: 'Technology Assurance',
-      category: 'audit',
-      desc: 'Reviewing core technology stacks, platform integrations, infrastructure controls, and database integrity schemas.',
-      badge: 'Audit & Assurance'
-    },
-    {
-      id: 'audit-readiness',
-      code: 'Readiness',
-      name: 'Audit Readiness',
-      category: 'audit',
-      desc: 'Pre-audit controls mapping, evidence pre-validation, gap remediation, and mock auditor evaluations.',
-      badge: 'Audit & Assurance'
-    },
-    {
-      id: 'audit-support',
-      code: 'Support',
-      name: 'Audit Support',
-      category: 'audit',
-      desc: 'Auditor liaison management, evidence coordination, request list tracking, and control walk-through facilitation.',
-      badge: 'Audit & Assurance'
-    },
-
-    // Managed Services
-    {
-      id: 'comp-ops',
-      code: 'Ops',
-      name: 'Compliance Operations',
+      id: 'managed-compliance',
+      code: 'Managed',
+      name: 'Compliance Managed Services',
       category: 'managed',
-      desc: 'Extend your bandwidth with external specialists executing day-to-day security and compliance operational workflows.',
-      badge: 'Managed Services'
-    },
-    {
-      id: 'audit-coord',
-      code: 'Coordination',
-      name: 'Audit Coordination',
-      category: 'managed',
-      desc: 'Liaising with auditors, managing request lists, gathering technical artifacts, and scheduling walk-throughs.',
-      badge: 'Managed Services'
-    },
-    {
-      id: 'evidence-coll',
-      code: 'Evidence',
-      name: 'Evidence Collection',
-      category: 'managed',
-      desc: 'Continuous evidence gathering, document repository updates, and control validation schemas.',
-      badge: 'Managed Services'
-    },
-    {
-      id: 'cust-quest',
-      code: 'Questionnaires',
-      name: 'Customer Security Questionnaires',
-      category: 'managed',
-      desc: 'Rapid processing and accurate technical answering of vendor security assessments and customer trust questionnaires.',
-      badge: 'Managed Services'
-    },
-    {
-      id: 'continuous-mon',
-      code: 'Monitoring',
-      name: 'Continuous Compliance Monitoring',
-      category: 'managed',
-      desc: 'Real-time control tracking, continuous compliance health checks, and dashboard reporting.',
-      badge: 'Managed Services'
-    },
-
-    // Program Implementation & Transformation
-    {
-      id: 'sec-prog',
-      code: 'Security',
-      name: 'Security Program Development',
-      category: 'program',
-      desc: 'Custom blueprinting, development, and scaling of cybersecurity, risk advisory, and business resiliency frameworks.',
-      badge: 'Program Implementation & Transformation'
-    },
-    {
-      id: 'frame-impl',
-      code: 'Framework',
-      name: 'Framework Implementation',
-      category: 'program',
-      desc: 'Operationalizing and embedding governance, security, and compliance frameworks to deliver lasting business value.',
-      badge: 'Program Implementation & Transformation'
-    },
-    {
-      id: 'policy-proc',
-      code: 'Procedures',
-      name: 'Policy & Procedure Development',
-      category: 'program',
-      desc: 'Drafting, formatting, and operationalizing comprehensive company-wide IT, AI, and information security policies.',
-      badge: 'Program Implementation & Transformation'
-    },
-    {
-      id: 'control-design',
-      code: 'Design',
-      name: 'Control Design & Implementation',
-      category: 'program',
-      desc: 'Designing key technical and operational controls and embedding them into daily production workflows.',
-      badge: 'Program Implementation & Transformation'
-    },
-    {
-      id: 'training-aware',
-      code: 'Training',
-      name: 'Training & Awareness Programs',
-      category: 'program',
-      desc: 'Building and administering security training modules, compliance awareness sessions, and phishing simulations.',
-      badge: 'Program Implementation & Transformation'
-    },
-    {
-      id: 'comp-trans',
-      code: 'Transformation',
-      name: 'Compliance Transformation',
-      category: 'program',
-      desc: 'Modernizing legacy security infrastructure, automating evidence streams, and scaling compliance systems.',
-      badge: 'Program Implementation & Transformation'
-    },
-    {
-      id: 'remediation',
-      code: 'Remediation',
-      name: 'Remediation Management',
-      category: 'program',
-      desc: 'Managing plan of action & milestones (POA&M), audit finding remediation, and control hardening.',
-      badge: 'Program Implementation & Transformation'
-    },
-    {
-      id: 'continuous-improv',
-      code: 'Improvement',
-      name: 'Continuous Improvement Initiatives',
-      category: 'program',
-      desc: 'Regularly reviewing security processes, updating risk registries, and optimizing control efficiency.',
-      badge: 'Program Implementation & Transformation'
+      desc: 'We run your day-to-day compliance operations — evidence collection, monitoring, and reporting.',
+      badge: 'Managed Services',
+      img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=480&q=80&auto=format&fit=crop'
     }
   ];
 
-  const filteredOfferings = selectedCategory === 'all'
-    ? offerings
-    : offerings.filter((o) => o.category === selectedCategory);
+  const filteredOfferings = activeCategory === 'all'
+    ? featuredOfferings
+    : featuredOfferings.filter((o) => o.category === activeCategory);
 
   return (
     <section id="services" className="services-section">
@@ -392,27 +86,27 @@ export default function ServicesShowcase({ onOpenContact }) {
           <h2>Your Compliance Journey.<br />Our Commitment.</h2>
         </div>
 
-        {/* Categories filters */}
+        {/* Description banner strip */}
+        <div className="services-desc-banner">
+          <p>
+            Whether you're preparing for an audit, strengthening your cybersecurity posture, building a compliance function, or scaling your team — Gaussians works alongside you every step of the way.
+          </p>
+        </div>
+
+        {/* Category filters */}
         <div className="services-categories">
           {categories.map((cat) => (
             <button
               key={cat.id}
-              className={`cat-filter-btn ${selectedCategory === cat.id ? 'active' : ''}`}
-              onClick={() => setSelectedCategory(cat.id)}
+              className={`cat-filter-btn ${activeCategory === cat.id ? 'active' : ''}`}
+              onClick={() => setActiveCategory(cat.id)}
             >
               {cat.name}
             </button>
           ))}
         </div>
 
-        {/* Description banner strip */}
-        <div className="services-desc-banner">
-          <p>
-            Whether you're preparing for an audit, strengthening your cybersecurity posture, building a compliance function, or scaling your team, Gaussians works alongside you every step of the way. We become an extension of your team, combining deep cybersecurity and compliance expertise with practical execution, operational ownership, and cost-effective delivery.
-          </p>
-        </div>
-
-        {/* Grid of services */}
+        {/* Featured services grid */}
         <div className="services-grid">
           {filteredOfferings.map((item) => (
             <div className="service-card glass-card" key={item.id}>
@@ -428,6 +122,35 @@ export default function ServicesShowcase({ onOpenContact }) {
             </div>
           ))}
         </div>
+
+        {/* Explore More CTA */}
+        <div className="explore-more-banner">
+          <div className="explore-more-content">
+            <div className="explore-more-text">
+              <h3 className="explore-more-title">Explore Our Full Service Portfolio</h3>
+              <p className="explore-more-desc">
+                We support 15+ global frameworks across cybersecurity, AI governance, privacy, risk, audit, and managed services. Tell us what you need.
+              </p>
+              <div className="explore-more-tags">
+                <span className="explore-tag">GDPR / CCPA</span>
+                <span className="explore-tag">HIPAA</span>
+                <span className="explore-tag">PCI DSS</span>
+                <span className="explore-tag">NIST CSF / AI RMF</span>
+                <span className="explore-tag">HITRUST</span>
+                <span className="explore-tag">CMMC</span>
+                <span className="explore-tag">SOX / ITGC</span>
+                <span className="explore-tag">CSA STAR</span>
+                <span className="explore-tag">+ More</span>
+              </div>
+            </div>
+            <button
+              className="btn-primary explore-more-btn"
+              onClick={onOpenFrameworks}
+            >
+              Explore Frameworks Catalog <ArrowRight size={16} />
+            </button>
+          </div>
+        </div>
       </div>
 
       <style>{`
@@ -436,73 +159,13 @@ export default function ServicesShowcase({ onOpenContact }) {
           background: var(--bg-soft-purple);
         }
 
-        /* Two-column split header */
-        .services-header-split {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 3rem;
-          align-items: center;
-          padding-bottom: 3rem;
-          border-bottom: 1px solid var(--border-purple);
-          margin-bottom: 0;
-        }
-
-        .services-header-left {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 1rem;
-        }
-
-        .services-main-title {
-          font-size: clamp(1.8rem, 3vw, 2.6rem);
-          line-height: 1.2;
-          color: var(--text-dark);
-          margin: 0;
-          text-align: left;
-        }
-
-        .services-title-accent {
-          background: linear-gradient(135deg, var(--primary) 0%, var(--accent-purple) 100%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-        }
-
-        .services-header-right {
-          display: flex;
-          flex-direction: column;
-          gap: 1rem;
-        }
-
-        .services-header-desc {
-          font-size: 1rem;
-          color: var(--text-muted);
-          line-height: 1.7;
-          margin: 0;
-        }
-
-        @media (max-width: 768px) {
-          .services-header-split {
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-          }
-        }
-
-        .services-categories {
-          display: flex;
-          justify-content: center;
-          gap: 0.75rem;
-          margin: 2.5rem 0 1.75rem 0;
-          flex-wrap: wrap;
-        }
-
         .services-desc-banner {
           background: linear-gradient(135deg, rgba(90, 56, 253, 0.06) 0%, rgba(168, 85, 247, 0.06) 100%);
           border: 1px solid var(--border-purple);
           border-left: 4px solid var(--primary);
           border-radius: var(--radius-md);
           padding: 1.1rem 1.75rem;
-          margin-bottom: 2.5rem;
+          margin-bottom: 2rem;
         }
 
         .services-desc-banner p {
@@ -512,15 +175,23 @@ export default function ServicesShowcase({ onOpenContact }) {
           margin: 0;
         }
 
+        .services-categories {
+          display: flex;
+          justify-content: center;
+          gap: 0.65rem;
+          margin-bottom: 2.5rem;
+          flex-wrap: wrap;
+        }
+
         .cat-filter-btn {
-          padding: 0.6rem 1.4rem;
+          padding: 0.55rem 1.25rem;
           border-radius: var(--radius-full);
           border: 1px solid var(--border-purple);
           background: #FFFFFF;
           color: var(--text-dark);
           font-family: var(--font-heading);
           font-weight: 600;
-          font-size: 0.9rem;
+          font-size: 0.88rem;
           cursor: pointer;
           transition: var(--transition-fast);
         }
@@ -541,31 +212,39 @@ export default function ServicesShowcase({ onOpenContact }) {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
           gap: 1.5rem;
+          margin-bottom: 2.5rem;
         }
 
         .service-card {
-          padding: 2rem;
           background: #FFFFFF;
           border: 1px solid var(--border-purple);
           border-radius: var(--radius-lg);
           display: flex;
           flex-direction: column;
-          justify-content: space-between;
+          overflow: hidden;
           transition: var(--transition-normal);
-          min-height: 250px;
         }
 
         .service-card:hover {
           border-color: var(--primary);
-          box-shadow: 0 10px 30px rgba(90, 56, 253, 0.08);
+          box-shadow: 0 10px 30px rgba(90, 56, 253, 0.12);
           transform: translateY(-4px);
+        }
+
+        /* Photo header */
+        /* Card body */
+        .service-card {
+          padding: 2rem;
+          overflow: visible;
+          min-height: 230px;
+          justify-content: space-between;
         }
 
         .service-card-header {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          margin-bottom: 1.25rem;
+          margin-bottom: 1.1rem;
         }
 
         .service-code-badge {
@@ -573,30 +252,26 @@ export default function ServicesShowcase({ onOpenContact }) {
           color: var(--primary);
           font-family: var(--font-heading);
           font-weight: 800;
-          font-size: 0.9rem;
+          font-size: var(--fs-small);
           padding: 0.3rem 0.8rem;
           border-radius: var(--radius-sm);
         }
 
         .service-category-badge {
-          font-size: 0.78rem;
+          font-size: var(--fs-small);
           font-weight: 600;
           color: var(--text-muted);
-          max-width: 180px;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
         }
 
         .service-card-title {
-          font-size: 1.2rem;
-          margin-bottom: 0.75rem;
+          font-size: var(--fs-card);
+          margin-bottom: 0.65rem;
           color: var(--text-dark);
-          font-weight: 750;
+          font-weight: 700;
         }
 
         .service-card-desc {
-          font-size: 0.9rem;
+          font-size: var(--fs-body);
           color: var(--text-muted);
           line-height: 1.6;
           margin-bottom: 1.5rem;
@@ -612,7 +287,7 @@ export default function ServicesShowcase({ onOpenContact }) {
           color: var(--primary);
           font-family: var(--font-heading);
           font-weight: 700;
-          font-size: 0.88rem;
+          font-size: var(--fs-small);
           cursor: pointer;
           padding: 0;
           transition: var(--transition-fast);
@@ -620,13 +295,96 @@ export default function ServicesShowcase({ onOpenContact }) {
         }
 
         .service-card-btn:hover {
-          gap: 0.6rem;
+          gap: 0.65rem;
           color: var(--primary-hover);
+        }
+
+        /* Explore More Banner */
+        .explore-more-banner {
+          background: linear-gradient(135deg, var(--primary) 0%, #3B1AD8 100%);
+          border-radius: var(--radius-lg);
+          padding: 2.75rem 3rem;
+          box-shadow: 0 18px 50px rgba(90, 56, 253, 0.28);
+        }
+
+        .explore-more-content {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 2.5rem;
+        }
+
+        .explore-more-text {
+          flex: 1;
+        }
+
+        .explore-more-title {
+          font-size: var(--fs-section);
+          color: #FFFFFF;
+          margin-bottom: 0.5rem;
+        }
+
+        .explore-more-desc {
+          font-size: var(--fs-body);
+          color: rgba(255, 255, 255, 0.88);
+          line-height: 1.6;
+          margin-bottom: 1.25rem;
+          max-width: 600px;
+        }
+
+        .explore-more-tags {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+        }
+
+        .explore-tag {
+          padding: 0.3rem 0.85rem;
+          background: rgba(255, 255, 255, 0.12);
+          border: 1px solid rgba(255, 255, 255, 0.25);
+          border-radius: var(--radius-full);
+          font-family: var(--font-heading);
+          font-weight: 700;
+          font-size: var(--fs-small);
+          color: #FFFFFF;
+          backdrop-filter: blur(4px);
+        }
+
+        .explore-more-btn {
+          background: #FFFFFF !important;
+          color: var(--primary) !important;
+          flex-shrink: 0;
+          font-weight: 700;
+          font-size: var(--fs-body);
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
+          white-space: nowrap;
+        }
+
+        .explore-more-btn:hover {
+          background: #F3E8FF !important;
+          transform: translateY(-2px);
         }
 
         @media (max-width: 1024px) {
           .services-grid {
             grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
+        @media (max-width: 768px) {
+          .explore-more-content {
+            flex-direction: column;
+            align-items: flex-start;
+          }
+          .explore-more-banner {
+            padding: 2rem 1.5rem;
+          }
+          .explore-more-title {
+            font-size: 1.4rem;
+          }
+          .explore-more-btn {
+            width: 100%;
+            justify-content: center;
           }
         }
 

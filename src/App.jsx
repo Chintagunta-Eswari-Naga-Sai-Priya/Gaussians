@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import TrustTicker from './components/TrustTicker';
+
 import DifferenceSection from './components/DifferenceSection';
 import HowWeHelp from './components/HowWeHelp';
 import ServicesShowcase from './components/ServicesShowcase';
@@ -11,11 +11,13 @@ import GlobalPresence from './components/GlobalPresence';
 import LeadershipSection from './components/LeadershipSection';
 import GaussiansForward from './components/GaussiansForward';
 import ContactModal from './components/ContactModal';
+import FrameworksExplorerModal from './components/FrameworksExplorerModal';
 import Footer from './components/Footer';
 import { ArrowUp } from 'lucide-react';
 
 export default function App() {
   const [contactModalOpen, setContactModalOpen] = useState(false);
+  const [frameworksModalOpen, setFrameworksModalOpen] = useState(false);
   const [selectedTopic, setSelectedTopic] = useState('General Inquiry');
   const [showScrollTop, setShowScrollTop] = useState(false);
 
@@ -68,8 +70,6 @@ export default function App() {
           onExploreServices={handleExploreServices}
         />
         
-        {/* Trust Ticker Logos */}
-        <TrustTicker />
 
         {/* 2. The Gaussians Difference | Why Clients Choose Us */}
         <DifferenceSection />
@@ -78,7 +78,10 @@ export default function App() {
         <HowWeHelp onOpenContact={(topic) => handleOpenContact(topic)} />
 
         {/* 4. Services | Your Compliance Journey. Our Commitment. */}
-        <ServicesShowcase onOpenContact={(service) => handleOpenContact(`${service} Consultation`)} />
+        <ServicesShowcase 
+          onOpenContact={(service) => handleOpenContact(`${service} Consultation`)} 
+          onOpenFrameworks={() => setFrameworksModalOpen(true)}
+        />
         
         {/* 5. How We Deliver | Delivery Model */}
         <DeliveryModel onOpenContact={(model) => handleOpenContact(`${model} Delivery Model`)} />
@@ -102,6 +105,11 @@ export default function App() {
         isOpen={contactModalOpen}
         onClose={() => setContactModalOpen(false)}
         defaultTopic={selectedTopic}
+      />
+
+      <FrameworksExplorerModal
+        isOpen={frameworksModalOpen}
+        onClose={() => setFrameworksModalOpen(false)}
       />
 
       {/* Scroll to top button */}

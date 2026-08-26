@@ -137,7 +137,7 @@ export default function InteractiveCalculatorSection({ onOpenContact }) {
         }
 
         .col-title {
-          font-size: 1.35rem;
+          font-size: var(--fs-card);
           display: flex;
           align-items: center;
           gap: 0.6rem;
@@ -154,7 +154,7 @@ export default function InteractiveCalculatorSection({ onOpenContact }) {
           justify-content: space-between;
           margin-bottom: 0.75rem;
           font-family: var(--font-heading);
-          font-size: 0.92rem;
+          font-size: var(--fs-body);
         }
 
         .s-label {
@@ -187,7 +187,7 @@ export default function InteractiveCalculatorSection({ onOpenContact }) {
           display: flex;
           align-items: center;
           gap: 0.85rem;
-          font-size: 0.92rem;
+          font-size: var(--fs-body);
           color: var(--text-dark);
           font-weight: 600;
           cursor: pointer;
@@ -233,7 +233,7 @@ export default function InteractiveCalculatorSection({ onOpenContact }) {
         .metric-tag {
           font-family: var(--font-heading);
           font-weight: 800;
-          font-size: 0.72rem;
+          font-size: var(--fs-small);
           color: var(--primary);
           letter-spacing: 0.06em;
           display: block;
@@ -249,7 +249,7 @@ export default function InteractiveCalculatorSection({ onOpenContact }) {
         }
 
         .metric-sub {
-          font-size: 0.85rem;
+          font-size: var(--fs-small);
           color: var(--text-muted);
           font-weight: 500;
         }
@@ -258,7 +258,7 @@ export default function InteractiveCalculatorSection({ onOpenContact }) {
           width: 100%;
           justify-content: center;
           padding: 1rem 2rem;
-          font-size: 1rem;
+          font-size: var(--fs-body);
           margin-top: 0.5rem;
         }
 
